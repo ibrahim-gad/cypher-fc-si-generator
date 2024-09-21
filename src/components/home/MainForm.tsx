@@ -28,7 +28,7 @@ const MainForm: React.FC<MainFormProps> = ({ formSubmitHandler }) => {
     const [examplePrompt, setExamplePrompt] = useState('');
     const [userName, setUserName] = useState('');
     const [date, setDate] = useState(new Date());
-    const [useTimeInDate, setUseTimeInDate] = useState(false);
+    const [useTimeInDate, setUseTimeInDate] = useState(true);
     const [scenario, setScenario] = useState('');
     const [prompts, setPrompts] = useState<Prompt[]>([]);
     const [modalOpen, setModalOpen] = useState(false);

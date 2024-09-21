@@ -31,8 +31,8 @@ const addressee = (
     <div className="text-gray-900 dark:text-gray-100">
     The addressee of the prompt:
         <ul className="list-disc list-inside">
-            <li><strong>OFF:</strong> The prompt is addressed to the assistant, i.e You are an assistant integrated in...</li>
-            <li><strong>ON:</strong> The prompt is addressed to a 3rd person, i.e An ideal assistant integrated in...</li>
+            <li><strong>OFF:</strong> The SI is addressed to the assistant, i.e You are an assistant integrated in...</li>
+            <li><strong>ON:</strong> The SI is addressed to a 3rd person, i.e An ideal assistant integrated in...</li>
         </ul>
     </div>
 )

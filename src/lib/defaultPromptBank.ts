@@ -1,71 +1,36 @@
 // src/constants/defaultPromptBank.ts
-import { Category, SystemPromptFormat } from '../types/PromptTypes';
+import { Category } from '../types/PromptTypes';
+import {singleSchemaPrompts} from "./single-schema.ts";
+import {multipleSchemaPrompts} from "./multiple-schema.ts";
+import {dynamicSchemaPrompts} from "./dynamic-schema.ts";
+import {useCasePrompts} from "./use-case.ts";
+import {sandboxPrompts} from "./sandbox.ts";
 
 const defaultPromptBank: Category[] = [
     {
         id: '1',
         name: 'Function calling - Cypher-fc-single-schema',
-        prompts: [
-            {
-                id: '1',
-                format: SystemPromptFormat.MARKDOWN,
-                name: 'Default Prompt',
-                prompt: 'This is a default prompt in markdown format.',
-                addressee: 'assistant'
-            }
-        ]
+        prompts: singleSchemaPrompts
     },
     {
         id: '2',
         name: 'Function calling - Cypher-fc-multiple-schema',
-        prompts: [
-            {
-                id: '1',
-                format: SystemPromptFormat.MARKDOWN,
-                name: 'Default Prompt',
-                prompt: 'This is a default prompt in markdown format.',
-                addressee: 'assistant'
-            }
-        ]
+        prompts: multipleSchemaPrompts
     },
     {
         id: '3',
         name: 'Function calling - Cypher-fc-dynamic-schema',
-        prompts: [
-            {
-                id: '1',
-                format: SystemPromptFormat.MARKDOWN,
-                name: 'Default Prompt',
-                prompt: 'This is a default prompt in markdown format.',
-                addressee: 'assistant'
-            }
-        ]
+        prompts: dynamicSchemaPrompts
     },
     {
         id: '4',
         name: 'Cypher task - with use-case function calling',
-        prompts: [
-            {
-                id: '1',
-                format: SystemPromptFormat.MARKDOWN,
-                name: 'Default Prompt',
-                prompt: 'This is a default prompt in markdown format.',
-                addressee: 'assistant'
-            }
-        ]
+        prompts: useCasePrompts
     },
     {
         id: '5',
         name: 'Cypher task - neo4j-sandbox-with-tools',
-        prompts: [
-            {
-                id: '1',
-                format: SystemPromptFormat.MARKDOWN,
-                name: 'Default Prompt',
-                prompt: 'This is a default prompt in markdown format.',
-                addressee: 'assistant'
-            }
-        ]
+        prompts: sandboxPrompts
     }
 ];
 
