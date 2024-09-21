@@ -1,6 +1,7 @@
 import {PromptData} from "../../types/PromptTypes.ts";
 
 const PromptViewer = ({promptData}:{promptData:PromptData}) => {
+    console.log(promptData)
     return (
         <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
             <header className="mb-4">
