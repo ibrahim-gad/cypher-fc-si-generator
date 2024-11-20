@@ -49,7 +49,8 @@ export const usePromptsBank = create<PromptsBankState>((set) => ({
             }
         }
         const formatCategoryData = (data: string): Prompt[] => {
-            const lines = Papa.parse(data, {
+            // @ts-expect-error
+            const lines: string[][] = Papa.parse(data, {
                 delimiter: ',',
                 quoteChar: '"',
                 skipEmptyLines: true
