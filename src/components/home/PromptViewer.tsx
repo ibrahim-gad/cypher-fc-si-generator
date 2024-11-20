@@ -19,7 +19,7 @@ const PromptViewer = ({promptData}:{promptData:PromptData}) => {
             "data": extractAvailableData(promptData),
         }
         setPrompt(formatNamed(defaultPrompt, dynamicReplacement));
-        console.log(formatNamed(defaultPrompt, dynamicReplacement))
+        // console.log(formatNamed(defaultPrompt, dynamicReplacement))
     }, [promptData]);
     console.log(promptData)
     return (

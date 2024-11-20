@@ -66,7 +66,7 @@ const MainForm: React.FC<MainFormProps> = ({ formSubmitHandler }) => {
             useTimeInDate,
             scenario
         }
-        console.log("Form submitted with values:", data);
+        // console.log("Form submitted with values:", data);
         formSubmitHandler(data);
     };
     useEffect(() => {

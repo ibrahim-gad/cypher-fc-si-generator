@@ -19,6 +19,7 @@ export interface Category {
     id: string;
     name: string;
     prompts: Prompt[];
+    gid: string;
 }
 
 export enum UserPromptFormat {
