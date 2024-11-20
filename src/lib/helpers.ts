@@ -31,9 +31,9 @@ export const extractInstructions = ({category, siFormat, addressee, userPromptFo
     let instructions = "";
     const formatInstructionsMap: { [key in SystemPromptFormat]: string } = {
         [SystemPromptFormat.MARKDOWN]: "- The system prompt is in markdown format.\n",
-        [SystemPromptFormat.MARKDOWN_WITH_XML]: "- The system prompt is in markdown format with XML.\n",
-        [SystemPromptFormat.TEXT]: "- The system prompt is in text format.\n",
-        [SystemPromptFormat.TEXT_WITH_XML]: "- The system prompt is in text format with XML.\n",
+        [SystemPromptFormat.MARKDOWN_WITH_XML]: "- The system prompt is in markdown format with some XML.\n",
+        [SystemPromptFormat.TEXT]: "- The system prompt is in text format with bullet points if needed, no sub bullet points.\n",
+        [SystemPromptFormat.TEXT_WITH_XML]: "- The system prompt is in text format with bullet points if needed, no sub bullet points, with some XML.\n",
         [SystemPromptFormat.FULL_XML]: "- The system prompt is in full XML format.\n",
     };
 
@@ -48,7 +48,7 @@ export const extractInstructions = ({category, siFormat, addressee, userPromptFo
     }
     const userPromptFormatInstructionsMap: { [key in UserPromptFormat]: string } = {
     [UserPromptFormat.MARKDOWN]: "- The llm should expect that the user prompt will be in markdown format.\n",
-    [UserPromptFormat.TEXT]: "- The llm should expect that the user prompt will be in text format.\n",
+    [UserPromptFormat.TEXT]: "- The llm should expect that the user prompt will be in plain text format.\n",
     [UserPromptFormat.XML]: "- The llm should expect that the user prompt will be in XML format.\n",
     [UserPromptFormat.HTML]: "- The llm should expect that the user prompt will be in HTML format.\n",
     [UserPromptFormat.JSON]: "- The llm should expect that the user prompt will be in JSON format.\n",

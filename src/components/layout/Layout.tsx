@@ -16,6 +16,25 @@ const Layout = () => {
     const toggleTheme = () => {
         setIsDarkTheme(!isDarkTheme);
     };
+    useEffect(() => {
+        async function fetchGoogleSheet(spreadsheetId: string, sheetId: string) {
+            const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&gid=${sheetId}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.text();
+                return data;
+            } catch (error) {
+                console.error('Error fetching spreadsheet:', error);
+                return null;
+            }
+        }
+       fetchGoogleSheet("1Elz_qsKCuEPGeL6p1FbozsMDl823bo4VWq3N7KJ38eA", "1948078990").then(data => {
+            console.log(data);
+       });
+
+
+    }, []);
     return (
         <div>
             {/*<Navbar />*/}
