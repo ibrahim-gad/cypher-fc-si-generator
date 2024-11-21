@@ -248,7 +248,7 @@ const MainForm: React.FC<MainFormProps> = ({ formSubmitHandler }) => {
             </FormControl>
             <FormControl fullWidth>
                 <label className="text-gray-900 dark:text-gray-100">
-                    Scenario
+                    Use Case
                     <IconButton onClick={() => handleOpenModal(formHelpText.scenario)}>
                         <InfoIcon />
                     </IconButton>

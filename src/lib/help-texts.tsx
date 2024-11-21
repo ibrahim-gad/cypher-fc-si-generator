@@ -2,8 +2,8 @@ const toolPurpose = (
     <div className="text-gray-900 dark:text-gray-100">
     This tool can help you with:
     <ul className="list-disc list-inside">
-        <li>Generating system prompts to create an SI for cypher FC tasks.</li>
-        <li>The generated system prompts depend on the scenario you insert and an example.</li>
+        <li>Generating a prompt to create an SI for cypher FC tasks.</li>
+        <li>The generated prompt depend on the use case you insert and an example.</li>
         <li>You start by choosing a <em>category</em> and the <em>SI format</em> and <em>The Addressee</em>, this will filter the available examples with these variables for you.</li>
         <li>These 3 variable themselves also participate in building the prompt.</li>
         <li>This tool won't actually create the SI for you, you have to copy the prompt and give it ChatGpt or Claude or any LLM you like.</li>
@@ -23,7 +23,7 @@ const systemPromptValidity = (
         <li>Does it mention the Assistant Response Format?</li>
         <li>Does it mention the User Name?</li>
         <li>Does it mention the Date?</li>
-        <li>Does it follow the Scenario?</li>
+        <li>Does it follow the Use Case?</li>
     </ul>
     </div>
 )
@@ -38,13 +38,13 @@ const addressee = (
 )
 const scenario = (
     <div className="text-gray-900 dark:text-gray-100">
-    The scenario of the new SI:
+    The use case of the new SI:
         <ul className="list-disc list-inside">
             <li>This is the most important piece of information.</li>
             <li>Create the schema/schemas first, even if you still don't know what will you do in the conversation, because one schema can be suitable for a lot of conversations, but a conversation needs a specific schema.</li>
             <li>Use the <strong>Domain</strong>, <strong>Subdomain</strong>, and the <strong>schema/schemas</strong> as a base for this.</li>
             <li><strong>Don't just copy paste the scenario from the labeling tool.</strong></li>
-            <li>Make this generic for a few use cases, not specific to one conversation, but suitable for a <strong>class</strong> of conversations. (Remember: you still have to do variants)</li>
+            <li>Make this suitable for multiple conversations, not specific to one conversation, but suitable for a <strong>class</strong> of conversations. (Remember: you still have to do variants)</li>
         </ul>
     </div>
 )
