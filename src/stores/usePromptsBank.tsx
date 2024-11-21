@@ -3,6 +3,7 @@ import {Category, Prompt, SystemPromptFormat} from '../types/PromptTypes';
 import defaultPromptBank from '../lib/defaultPromptBank';
 import { v4 as uuidv4 } from 'uuid';
 import Papa from 'papaparse';
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 interface PromptsBankState {
     promptBank: Category[];
@@ -13,7 +14,10 @@ interface PromptsBankState {
     syncPrompts: () => Promise<void>;
 }
 
-export const usePromptsBank = create<PromptsBankState>((set) => ({
+export const usePromptsBank = create<PromptsBankState>()(
+    persist(
+    (set) => (
+    {
     promptBank: defaultPromptBank,
     addCategory: (category) => set((state) => ({
         promptBank: [...state.promptBank, category]
@@ -187,7 +191,14 @@ export const usePromptsBank = create<PromptsBankState>((set) => ({
                 ]}));
         }
     },
-}));
+}),
+{
+    name: 'prompts-bank-storage',
+    storage: createJSONStorage(() => localStorage),
+}
+)
+
+);
 
 
 
