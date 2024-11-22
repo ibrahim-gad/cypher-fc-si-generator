@@ -7,6 +7,7 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 
 interface PromptsBankState {
     promptBank: Category[];
+    loading: boolean;
     addCategory: (category: Category) => void;
     removeCategory: (categoryId: string) => void;
     addPrompt: (categoryId: string, prompt: Prompt) => void;
@@ -19,6 +20,7 @@ export const usePromptsBank = create<PromptsBankState>()(
         (set) => (
             {
                 promptBank: defaultPromptBank,
+                loading: false,
                 addCategory: (category) => set((state) => ({
                     promptBank: [...state.promptBank, category]
                 })),
@@ -40,6 +42,7 @@ export const usePromptsBank = create<PromptsBankState>()(
                     )
                 })),
                 syncPrompts: async () => {
+                    set({ loading: true });
                     async function fetchGoogleSheet(spreadsheetId: string, sheetId: string) {
                         const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:csv&gid=${sheetId}`;
 
@@ -53,7 +56,7 @@ export const usePromptsBank = create<PromptsBankState>()(
                         }
                     }
                     const formatCategoryData = (data: string): Prompt[] => {
-                        // @ts-expect-error
+                        // @ts-ignore
                         const lines: string[][] = Papa.parse(data, {
                             delimiter: ',',
                             quoteChar: '"',
@@ -114,6 +117,7 @@ export const usePromptsBank = create<PromptsBankState>()(
                                 }
                             ]}));
                     }
+                    set({ loading: false });
                 },
             }),
         {
@@ -121,8 +125,4 @@ export const usePromptsBank = create<PromptsBankState>()(
             storage: createJSONStorage(() => localStorage),
         }
     )
-
 );
-
-
-
