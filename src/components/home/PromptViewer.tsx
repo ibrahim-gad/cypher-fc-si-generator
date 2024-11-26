@@ -2,43 +2,105 @@ import {PromptData} from "../../types/PromptTypes.ts";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {defaultPrompt} from "../../lib/defaultPrompts.ts";
-import {FaCopy} from "react-icons/fa";
+import {FaCopy, FaEdit, FaSave} from "react-icons/fa";
 import {copyToClipboard, extractAvailableData, extractInstructions, formatNamed} from "../../lib/helpers.ts";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {usePromptsBank} from "../../stores/usePromptsBank.tsx";
 import rehypeRaw from 'rehype-raw';
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
+import {Box, Button, Card, CardContent, CardHeader} from "@mui/material";
 
-const PromptViewer = ({promptData}:{promptData:PromptData}) => {
-    const { promptBank } = usePromptsBank();
+interface PromptControllersProps {
+    isEditing: boolean;
+    handleSave: () => void;
+    setIsEditing: (isEditing: boolean) => void;
+    prompt: string;
+}
+
+const PromptControllers: React.FC<PromptControllersProps> = ({isEditing, handleSave, setIsEditing, prompt}) => {
+    return (
+        <Box display="flex" gap={2}>
+            {isEditing ? (
+                <Button
+                    variant="contained"
+                    color="info"
+                    size="medium"
+                    onClick={handleSave}
+                    startIcon={<FaSave />}
+                >
+                    Save Prompt
+                </Button>
+            ) : (
+                <>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        size="medium"
+                        onClick={() => setIsEditing(true)}
+                        startIcon={<FaEdit />}
+                    >
+                        Edit Prompt
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="success"
+                        size="medium"
+                        onClick={() => copyToClipboard(prompt)}
+                        startIcon={<FaCopy />}
+                    >
+                        Copy Prompt
+                    </Button>
+                </>
+            )}
+        </Box>
+    );
+}
+
+const PromptViewer = ({promptData}: { promptData: PromptData }) => {
+    const {promptBank} = usePromptsBank();
     const [prompt, setPrompt] = useState<string>(defaultPrompt);
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+
     useEffect(() => {
         const dynamicReplacement = {
             "instructions": extractInstructions(promptData),
             "scenario": promptData.scenario,
-            "example": promptBank.find(cat => cat.id === promptData.category)?.prompts?.find(item=>item.id===promptData.examplePrompt)?.prompt,
+            "example": promptBank.find(cat => cat.id === promptData.category)?.prompts?.find(item => item.id === promptData.examplePrompt)?.prompt,
             "data": extractAvailableData(promptData),
         }
         setPrompt(formatNamed(defaultPrompt, dynamicReplacement));
-        // console.log(formatNamed(defaultPrompt, dynamicReplacement))
-    }, [promptData]);
-    console.log(promptData)
+    }, [promptData, promptBank]);
+
+    const handleSave = () => {
+        setIsEditing(false);
+        // Save the prompt if needed
+    };
+
     return (
-        <section className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
-            <header className="mb-4 flex justify-between">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">Prompt</h2>
-                <button
-                    onClick={() => copyToClipboard(prompt)}
-                    className="p-2 bg-green-500 my-1 text-white rounded-md hover:bg-blue-600 transition-colors flex items-center"
-                >
-                    <FaCopy className="text-white text-xl mr-2"/> Copy Prompt
-                </button>
-            </header>
-            <div>
-                <Markdown className="markdown-content" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-                    {prompt}
-                </Markdown>
-            </div>
-        </section>
+        <Card>
+            <CardHeader
+                title="Prompt"
+                action={<PromptControllers isEditing={isEditing} handleSave={handleSave} setIsEditing={setIsEditing} prompt={prompt} />}
+            />
+            <CardContent>
+                {isEditing ? (
+                    <MdEditor
+                        value={prompt}
+                        style={{height: "750px"}}
+                        renderHTML={(text) => <Markdown className="markdown-content" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{text}</Markdown>}
+                        onChange={({ text }) => setPrompt(text)}
+                    />
+                ) : (
+                    <Markdown className="markdown-content" remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+                        {prompt}
+                    </Markdown>
+                )}
+                <Box display="flex" justifyContent="end" mt={2}>
+                    <PromptControllers isEditing={isEditing} handleSave={handleSave} setIsEditing={setIsEditing} prompt={prompt}/>
+                </Box>
+            </CardContent>
+        </Card>
     );
 }
 export default PromptViewer;
