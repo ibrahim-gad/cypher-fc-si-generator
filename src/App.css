@@ -33,6 +33,6 @@
     border-radius: 5px;
     overflow-x: auto;
 }
-.css-1o0kqxp-MuiInputBase-root-MuiOutlinedInput-root {
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-formControl {
     color: inherit !important;
 }
