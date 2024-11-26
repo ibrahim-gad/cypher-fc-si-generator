@@ -27,13 +27,13 @@ const Instructions = () => {
                 <ul className="list-disc list-inside text-gray-900 dark:text-gray-100">
                     <li>
                         Understand how this tool can help you.
-                        <IconButton onClick={() => handleOpenModal(formHelpText.toolPurpose)}>
+                        <IconButton className="text-gray-900 dark:text-gray-100" onClick={() => handleOpenModal(formHelpText.toolPurpose)}>
                             <InfoIcon />
                         </IconButton>
                     </li>
                     <li>
                         How to know if the produced SI is good or not.
-                        <IconButton onClick={() => handleOpenModal(formHelpText.systemPromptValidity)}>
+                        <IconButton className="text-gray-900 dark:text-gray-100" onClick={() => handleOpenModal(formHelpText.systemPromptValidity)}>
                             <InfoIcon />
                         </IconButton>
                     </li>

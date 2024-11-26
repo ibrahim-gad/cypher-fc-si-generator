@@ -94,7 +94,7 @@ const MainForm: React.FC<MainFormProps> = ({ formSubmitHandler }) => {
                     <FormControl fullWidth>
                         <label className="text-gray-900 dark:text-gray-100">
                             Category
-                            <IconButton onClick={() => handleOpenModal(formHelpText.category)}>
+                            <IconButton className="text-gray-900 dark:text-gray-100" onClick={() => handleOpenModal(formHelpText.category)}>
                                 <InfoIcon />
                             </IconButton>
                         </label>
@@ -125,7 +125,7 @@ const MainForm: React.FC<MainFormProps> = ({ formSubmitHandler }) => {
                     <FormControl fullWidth>
                         <label className="text-gray-900 dark:text-gray-100">
                             Addressee
-                            <IconButton onClick={() => handleOpenModal(formHelpText.addressee)}>
+                            <IconButton className="text-gray-900 dark:text-gray-100" onClick={() => handleOpenModal(formHelpText.addressee)}>
                                 <InfoIcon />
                             </IconButton>
                         </label>
@@ -148,11 +148,11 @@ const MainForm: React.FC<MainFormProps> = ({ formSubmitHandler }) => {
                 <FormControl fullWidth>
                     <label className="text-gray-900 dark:text-gray-100">
                         Example SI
-                        <IconButton onClick={() => handleOpenModal(formHelpText.examplePrompt)}>
+                        <IconButton className="text-gray-900 dark:text-gray-100" onClick={() => handleOpenModal(formHelpText.examplePrompt)}>
                             <InfoIcon />
                         </IconButton>
                         {examplePrompt && (
-                            <IconButton onClick={handleOpenExamplePromptModal}>
+                            <IconButton className="text-gray-900 dark:text-gray-100" onClick={handleOpenExamplePromptModal}>
                                 <Visibility />
                             </IconButton>
                         )}
@@ -211,7 +211,7 @@ const MainForm: React.FC<MainFormProps> = ({ formSubmitHandler }) => {
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        className="bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                        className="bg-white dark:bg-gray-700 text-gray-900 dark:!text-gray-100"
                     />
                 </FormControl>
                 <FormControl fullWidth>
@@ -249,7 +249,7 @@ const MainForm: React.FC<MainFormProps> = ({ formSubmitHandler }) => {
             <FormControl fullWidth>
                 <label className="text-gray-900 dark:text-gray-100">
                     Use Case
-                    <IconButton onClick={() => handleOpenModal(formHelpText.scenario)}>
+                    <IconButton className="text-gray-900 dark:text-gray-100" onClick={() => handleOpenModal(formHelpText.scenario)}>
                         <InfoIcon />
                     </IconButton>
                 </label>

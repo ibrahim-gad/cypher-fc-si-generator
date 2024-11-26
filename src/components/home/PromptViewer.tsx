@@ -78,12 +78,13 @@ const PromptViewer = ({promptData}: { promptData: PromptData }) => {
     };
 
     return (
-        <Card>
+        <Card className="bg-white dark:bg-gray-800 shadow-lg rounded-lg">
             <CardHeader
                 title="Prompt"
+                className="text-gray-900 dark:text-gray-100"
                 action={<PromptControllers isEditing={isEditing} handleSave={handleSave} setIsEditing={setIsEditing} prompt={prompt} />}
             />
-            <CardContent>
+            <CardContent className="text-gray-900 dark:text-gray-100">
                 {isEditing ? (
                     <MdEditor
                         value={prompt}
